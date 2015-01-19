@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>ExtJS 4 + CKEditor</title>
+
+        <!-- include ckeditor -->
+        <script src="http://cdn.ckeditor.com/4.4.6/standard/ckeditor.js"></script>
+
+        <!-- include extjs -->
+        <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/gpl/4.2.1/resources/css/ext-all.css"/>
+        <script type="text/javascript" src="http://cdn.sencha.com/ext/gpl/4.2.1/ext-all.js"></script>
+
+        <!-- ckeditor wrapper -->
+        <script type="text/javascript" src="CKEditor.js"></script>
+
+        <script type="text/javascript">
+            Ext.onReady(function () {
+                Ext.create('Ext.panel.Panel', {
+                    itemId: 'examplePanel',
+                    title: 'CKEditor demo',
+                    width: 600,
+                    height: 400,
+                    buttons: [
+                        { 
+                            text: 'Load Sample Text',
+                            handler: function(test) {
+                                Ext.ComponentQuery.query('ckeditor[itemId=textEdit]')[0].setValue('This is some sample text...');
+                            }
+                        },
+                        {
+                            text: 'Save',
+                            handler: function () {
+                                alert(Ext.ComponentQuery.query('ckeditor[itemId=textEdit]')[0].getValue());
+                            }
+                        }
+                    ],
+                    items: [
+                        {
+                            xtype: 'ckeditor',
+                            itemId: 'textEdit',
+                            width: 600
+                        }
+                    ],
+                    renderTo: Ext.getBody()
+                });
+            });
+        </script>
+    </head>
+<body></body>
+</html>
